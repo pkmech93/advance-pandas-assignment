@@ -1,0 +1,1256 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "19e79ac3-f6ca-4fd2-aeea-f3f740127b55",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "4cbf6174-0745-4da9-b694-4c0ad06489d1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "course_name = [\"Data Science\", \"Machine Learning\", \"Big Data\", \"Data Engineer\"]\n",
+    "duration = [2,3,6,4]\n",
+    "df = pd.DataFrame(data = {\"course_name\" : course_name, \"duration\" : duration})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "94bbfbf4-23fc-4f1e-8609-067fe6b9bbec",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>course_name</th>\n",
+       "      <th>duration</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Data Science</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Machine Learning</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Big Data</td>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Data Engineer</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "        course_name  duration\n",
+       "0      Data Science         2\n",
+       "1  Machine Learning         3\n",
+       "2          Big Data         6\n",
+       "3     Data Engineer         4"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a898643b-f56e-4d46-bbbc-938c4da10a6e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q1. Write a code to print the data present in the second row of the dataframe, df."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "0e4c736c-c16d-4bd6-9c1a-3b3fa9472cae",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sec_row=df.iloc[1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "cdef50db-dd1f-4219-97a7-b2d6c931ffac",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "course_name    Machine Learning\n",
+       "duration                      3\n",
+       "Name: 1, dtype: object"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sec_row"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5f617da2-8d8f-49ac-835e-ba90db6c3570",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q2. What is the difference between the functions loc and iloc in pandas.DataFrame?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f53c654a-59c7-42c7-8d6f-1037c6ded4a6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "*/ Q2> Answer:  In Indexing Method: loc: Uses labels or boolean array to select data.\n",
+    "                                    iloc: Uses integer-based indexing to select data.\n",
+    "     In Usage: loc: It is label-based. You use column labels and row labels to index data. It includes the endpoint in slicing.\n",
+    "               iloc: It is integer-location based. You use integer indices to index data. It excludes the endpoint in slicing, following Python's standard indexing behavior."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7718970e-291e-4b42-ab0a-b8e656ca3709",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q3. Reindex the given dataframe using a variable, reindex = [3,0,1,2] and store it in the variable, new_df\n",
+    "then find the output for both new_df.loc[2] and new_df.iloc[2].\n",
+    "Did you observe any difference in both the outputs? If so then explain it.\n",
+    "Consider the below code to answer further questions:\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']\n",
+    "indices = [1,2,3,4,5,6]\n",
+    "#Creating a dataframe:\n",
+    "df1 = pd.DataFrame(np.random.rand(6,6), columns = columns, index = indices)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "daf1152b-5ecf-4a6b-ba6c-9ffe7b3435ee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q3> Answer: \n",
+    "import pandas as pd\n",
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "2f6607e9-8c95-424f-a83c-fdd747989e20",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']\n",
+    "indices = [1, 2, 3, 4, 5, 6]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "2bbf60e7-7830-4263-b2d2-370adaa0e6a3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Creating a dataframe:\n",
+    "df1 = pd.DataFrame(np.random.rand(6, 6), columns=columns, index=indices)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "afd3ee32-086d-41e0-81ab-d9c21a724a3e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Reindexing using the variable reindex\n",
+    "reindex = [3, 0, 1, 2]\n",
+    "new_df = df1.reindex(reindex)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "0abbe200-3d30-4861-9a03-152480071659",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "new_df.loc[2]:\n",
+      " column_1    0.387630\n",
+      "column_2    0.530512\n",
+      "column_3    0.940730\n",
+      "column_4    0.006158\n",
+      "column_5    0.516354\n",
+      "column_6    0.880285\n",
+      "Name: 2, dtype: float64\n",
+      "\n",
+      "new_df.iloc[2]:\n",
+      " column_1    0.651593\n",
+      "column_2    0.433335\n",
+      "column_3    0.689908\n",
+      "column_4    0.300909\n",
+      "column_5    0.312823\n",
+      "column_6    0.854877\n",
+      "Name: 1, dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Output for new_df.loc[2] and new_df.iloc[2]\n",
+    "print(\"new_df.loc[2]:\\n\", new_df.loc[2])\n",
+    "print(\"\\nnew_df.iloc[2]:\\n\", new_df.iloc[2])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d02613a3-b6a4-4fab-b1e0-1fd83d5a5c29",
+   "metadata": {},
+   "source": [
+    "new_df.loc[2]: This uses label-based indexing. It selects the row with the label/index '2' in the new DataFrame new_df.\n",
+    "new_df.iloc[2]: This uses integer-location based indexing. It selects the row at the integer position '2' in the new DataFrame new_df.\n",
+    "The outputs for these two operations may differ because of the reindexing. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c40e448a-1fad-431e-9642-5d98be18ec1d",
+   "metadata": {},
+   "source": [
+    "For example, if the original DataFrame (df1) looked like this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "cc7e3c71-6c8f-421f-90e0-f2cd821f9f4d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "   column_1  column_2  \n",
+    "1      5       6\n",
+    "2      8       4\n",
+    "3      6       9\n",
+    "4      10      23   "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "612d9931-77cf-4c38-9f70-e139d0d5c6bc",
+   "metadata": {},
+   "source": [
+    "After reindexing with reindex = [3, 0, 1, 2], the new order becomes:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6eb3be21-89b2-43c5-9d2f-ae0f42f9f498",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "   column_1  column_2  \n",
+    "3     6         9\n",
+    "1     5         6 \n",
+    "2     8         4\n",
+    "4     10        23 "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fe2f6efc-4da6-450c-acc7-2d66a1488883",
+   "metadata": {},
+   "source": [
+    "#Q4. Write a code to find the following statistical measurements for the above dataframe df1:\n",
+    "(i) mean of each and every column present in the dataframe."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "4d21d34d-2133-45e7-a018-3d9ed4b5c2bc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q4>(i) Answer> Calculate the mean of each column"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "83c1c1a7-196f-441e-9c9f-d8d0a8ae578f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "column_means = df1.mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "27769acd-6a88-40b7-8cae-e5f356d35a18",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Mean of each column:\n",
+      " column_1    0.446448\n",
+      "column_2    0.325510\n",
+      "column_3    0.672707\n",
+      "column_4    0.325592\n",
+      "column_5    0.292152\n",
+      "column_6    0.874987\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Print the mean of each column\n",
+    "print(\"Mean of each column:\\n\", column_means)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bf517a99-3b38-48aa-abb1-afbad2c5f944",
+   "metadata": {},
+   "source": [
+    "This code uses the mean() function on the DataFrame df1 to calculate the mean of each column. \n",
+    "The result (column_means) is a pandas Series where the index represents column names \n",
+    "and the values represent the mean of each respective column."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "959b5331-12cc-4691-84b0-7c58bf3e59a4",
+   "metadata": {},
+   "source": [
+    "#Q4. Write a code to find the following statistical measurements for the above dataframe df1:\n",
+    "(ii) standard deviation of column, ‘column_2’"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "1c14c56e-2ac4-4b66-9f7e-f296b8730405",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Q4(ii)answer> \n",
+    "# Calculate the standard deviation of 'column_2'\n",
+    "column_2_std = df1['column_2'].std()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "38acba3f-4d3b-441f-8578-ff906d6b5b42",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Standard deviation of 'column_2': 0.20196034431222207\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Print the standard deviation of 'column_2'\n",
+    "print(\"Standard deviation of 'column_2':\", column_2_std)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eec267ae-47cd-4577-94b3-b4d45438a6b7",
+   "metadata": {},
+   "source": [
+    "This code uses the std() function on the specific column 'column_2' in the DataFrame df1 to calculate its standard deviation."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "63a4df37-f319-4215-92bb-498a822cae56",
+   "metadata": {},
+   "source": [
+    "#Q5. Replace the data present in the second row of column, ‘column_2’ by a string variable then find the\n",
+    "mean of column, column_2.\n",
+    "If you are getting errors in executing it then explain why.\n",
+    "[Hint: To replace the data use df1.loc[] and equate this to string data of your choice.]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "76ce1a44-5ad3-47da-b86a-d827893fdcf5",
+   "metadata": {},
+   "source": [
+    "#Q5> Answer>\n",
+    "If we try to replace the data in the second row of 'column_2' with a string variable, \n",
+    "we will likely encounter an error because Pandas DataFrames expect consistent data types within each column. \n",
+    "Mixing numeric and string values in a numeric column can lead to a DataConversionWarning or an error."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b0510eab-a9bd-409f-a10a-670a66f3a39c",
+   "metadata": {},
+   "source": [
+    "However, if we still want to proceed and replace the data in the second row of 'column_2' with a string,\n",
+    "we can force the column to have an object dtype (which can accommodate mixed types). Here's how we can do it:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "fa5be4bd-8249-4128-a524-efc77db9562d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "\n",
+    "columns = ['column_1', 'column_2', 'column_3', 'column_4', 'column_5', 'column_6']\n",
+    "indices = [1, 2, 3, 4, 5, 6]\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "a270c9fa-6f09-48c2-92ca-d8d4e6d81b90",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Creating a dataframe:\n",
+    "df1 = pd.DataFrame(np.random.rand(6, 6), columns=columns, index=indices)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "8b0bca6a-1cee-4cd8-aaf9-7af28a6f9269",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Replace the data in the second row of 'column_2' with a string\n",
+    "df1.loc[2, 'column_2'] = 'your_string_data'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "id": "caae97a0-b0b3-4506-8970-3ce0483e5ff6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Modified DataFrame:\n",
+      "    column_1          column_2  column_3  column_4  column_5  column_6\n",
+      "1  0.901441          0.002341  0.123852  0.268046  0.184600  0.051448\n",
+      "2  0.171559  your_string_data  0.926386  0.038733  0.601927  0.447081\n",
+      "3  0.508758          0.153491  0.226834  0.931756  0.040457  0.090982\n",
+      "4  0.666291          0.670956  0.774917  0.935579  0.170267  0.289840\n",
+      "5  0.672834          0.233936  0.052439  0.539685  0.864061  0.251806\n",
+      "6  0.153984           0.98694  0.959670  0.558185  0.573983  0.360290\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Display the modified DataFrame\n",
+    "print(\"Modified DataFrame:\\n\", df1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "1905966f-c7d2-4ff6-a42b-b5483e655994",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>column_1</th>\n",
+       "      <th>column_2</th>\n",
+       "      <th>column_3</th>\n",
+       "      <th>column_4</th>\n",
+       "      <th>column_5</th>\n",
+       "      <th>column_6</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>0.901441</td>\n",
+       "      <td>0.002341</td>\n",
+       "      <td>0.123852</td>\n",
+       "      <td>0.268046</td>\n",
+       "      <td>0.184600</td>\n",
+       "      <td>0.051448</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>0.171559</td>\n",
+       "      <td>your_string_data</td>\n",
+       "      <td>0.926386</td>\n",
+       "      <td>0.038733</td>\n",
+       "      <td>0.601927</td>\n",
+       "      <td>0.447081</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>0.508758</td>\n",
+       "      <td>0.153491</td>\n",
+       "      <td>0.226834</td>\n",
+       "      <td>0.931756</td>\n",
+       "      <td>0.040457</td>\n",
+       "      <td>0.090982</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>0.666291</td>\n",
+       "      <td>0.670956</td>\n",
+       "      <td>0.774917</td>\n",
+       "      <td>0.935579</td>\n",
+       "      <td>0.170267</td>\n",
+       "      <td>0.289840</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>0.672834</td>\n",
+       "      <td>0.233936</td>\n",
+       "      <td>0.052439</td>\n",
+       "      <td>0.539685</td>\n",
+       "      <td>0.864061</td>\n",
+       "      <td>0.251806</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>0.153984</td>\n",
+       "      <td>0.98694</td>\n",
+       "      <td>0.959670</td>\n",
+       "      <td>0.558185</td>\n",
+       "      <td>0.573983</td>\n",
+       "      <td>0.360290</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   column_1          column_2  column_3  column_4  column_5  column_6\n",
+       "1  0.901441          0.002341  0.123852  0.268046  0.184600  0.051448\n",
+       "2  0.171559  your_string_data  0.926386  0.038733  0.601927  0.447081\n",
+       "3  0.508758          0.153491  0.226834  0.931756  0.040457  0.090982\n",
+       "4  0.666291          0.670956  0.774917  0.935579  0.170267  0.289840\n",
+       "5  0.672834          0.233936  0.052439  0.539685  0.864061  0.251806\n",
+       "6  0.153984           0.98694  0.959670  0.558185  0.573983  0.360290"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "816c17a3-dace-4319-ace5-8f1043e3fe2f",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "TypeError",
+     "evalue": "unsupported operand type(s) for +: 'float' and 'str'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+      "Cell \u001b[0;32mIn[46], line 2\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[38;5;66;03m# Calculate the mean of 'column_2'\u001b[39;00m\n\u001b[0;32m----> 2\u001b[0m column_2_mean \u001b[38;5;241m=\u001b[39m \u001b[43mdf1\u001b[49m\u001b[43m[\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mcolumn_2\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m]\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mmean\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/generic.py:11847\u001b[0m, in \u001b[0;36mNDFrame._add_numeric_operations.<locals>.mean\u001b[0;34m(self, axis, skipna, level, numeric_only, **kwargs)\u001b[0m\n\u001b[1;32m  11829\u001b[0m \u001b[38;5;129m@doc\u001b[39m(\n\u001b[1;32m  11830\u001b[0m     _num_doc,\n\u001b[1;32m  11831\u001b[0m     desc\u001b[38;5;241m=\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mReturn the mean of the values over the requested axis.\u001b[39m\u001b[38;5;124m\"\u001b[39m,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m  11845\u001b[0m     \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs,\n\u001b[1;32m  11846\u001b[0m ):\n\u001b[0;32m> 11847\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mNDFrame\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mmean\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mlevel\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mnumeric_only\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/generic.py:11401\u001b[0m, in \u001b[0;36mNDFrame.mean\u001b[0;34m(self, axis, skipna, level, numeric_only, **kwargs)\u001b[0m\n\u001b[1;32m  11393\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mmean\u001b[39m(\n\u001b[1;32m  11394\u001b[0m     \u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m  11395\u001b[0m     axis: Axis \u001b[38;5;241m|\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;241m|\u001b[39m lib\u001b[38;5;241m.\u001b[39mNoDefault \u001b[38;5;241m=\u001b[39m lib\u001b[38;5;241m.\u001b[39mno_default,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m  11399\u001b[0m     \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs,\n\u001b[1;32m  11400\u001b[0m ) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m Series \u001b[38;5;241m|\u001b[39m \u001b[38;5;28mfloat\u001b[39m:\n\u001b[0;32m> 11401\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_stat_function\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m  11402\u001b[0m \u001b[43m        \u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mmean\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mnanops\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mnanmean\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mlevel\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mnumeric_only\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\n\u001b[1;32m  11403\u001b[0m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/generic.py:11353\u001b[0m, in \u001b[0;36mNDFrame._stat_function\u001b[0;34m(self, name, func, axis, skipna, level, numeric_only, **kwargs)\u001b[0m\n\u001b[1;32m  11343\u001b[0m     warnings\u001b[38;5;241m.\u001b[39mwarn(\n\u001b[1;32m  11344\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mUsing the level keyword in DataFrame and Series aggregations is \u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m  11345\u001b[0m         \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mdeprecated and will be removed in a future version. Use groupby \u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m  11348\u001b[0m         stacklevel\u001b[38;5;241m=\u001b[39mfind_stack_level(),\n\u001b[1;32m  11349\u001b[0m     )\n\u001b[1;32m  11350\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_agg_by_level(\n\u001b[1;32m  11351\u001b[0m         name, axis\u001b[38;5;241m=\u001b[39maxis, level\u001b[38;5;241m=\u001b[39mlevel, skipna\u001b[38;5;241m=\u001b[39mskipna, numeric_only\u001b[38;5;241m=\u001b[39mnumeric_only\n\u001b[1;32m  11352\u001b[0m     )\n\u001b[0;32m> 11353\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_reduce\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m  11354\u001b[0m \u001b[43m    \u001b[49m\u001b[43mfunc\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mname\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mname\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mnumeric_only\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mnumeric_only\u001b[49m\n\u001b[1;32m  11355\u001b[0m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/series.py:4816\u001b[0m, in \u001b[0;36mSeries._reduce\u001b[0;34m(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)\u001b[0m\n\u001b[1;32m   4812\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mNotImplementedError\u001b[39;00m(\n\u001b[1;32m   4813\u001b[0m         \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mSeries.\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mname\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m does not implement \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mkwd_name\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m.\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m   4814\u001b[0m     )\n\u001b[1;32m   4815\u001b[0m \u001b[38;5;28;01mwith\u001b[39;00m np\u001b[38;5;241m.\u001b[39merrstate(\u001b[38;5;28mall\u001b[39m\u001b[38;5;241m=\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mignore\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\u001b[0;32m-> 4816\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mop\u001b[49m\u001b[43m(\u001b[49m\u001b[43mdelegate\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwds\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/nanops.py:93\u001b[0m, in \u001b[0;36mdisallow.__call__.<locals>._f\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m     91\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m     92\u001b[0m     \u001b[38;5;28;01mwith\u001b[39;00m np\u001b[38;5;241m.\u001b[39merrstate(invalid\u001b[38;5;241m=\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mignore\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\u001b[0;32m---> 93\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     94\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mValueError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m     95\u001b[0m     \u001b[38;5;66;03m# we want to transform an object array\u001b[39;00m\n\u001b[1;32m     96\u001b[0m     \u001b[38;5;66;03m# ValueError message to the more typical TypeError\u001b[39;00m\n\u001b[1;32m     97\u001b[0m     \u001b[38;5;66;03m# e.g. this is normally a disallowed function on\u001b[39;00m\n\u001b[1;32m     98\u001b[0m     \u001b[38;5;66;03m# object arrays that contain strings\u001b[39;00m\n\u001b[1;32m     99\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m is_object_dtype(args[\u001b[38;5;241m0\u001b[39m]):\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/nanops.py:155\u001b[0m, in \u001b[0;36mbottleneck_switch.__call__.<locals>.f\u001b[0;34m(values, axis, skipna, **kwds)\u001b[0m\n\u001b[1;32m    153\u001b[0m         result \u001b[38;5;241m=\u001b[39m alt(values, axis\u001b[38;5;241m=\u001b[39maxis, skipna\u001b[38;5;241m=\u001b[39mskipna, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwds)\n\u001b[1;32m    154\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m--> 155\u001b[0m     result \u001b[38;5;241m=\u001b[39m \u001b[43malt\u001b[49m\u001b[43m(\u001b[49m\u001b[43mvalues\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwds\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    157\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m result\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/nanops.py:418\u001b[0m, in \u001b[0;36m_datetimelike_compat.<locals>.new_func\u001b[0;34m(values, axis, skipna, mask, **kwargs)\u001b[0m\n\u001b[1;32m    415\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m datetimelike \u001b[38;5;129;01mand\u001b[39;00m mask \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m    416\u001b[0m     mask \u001b[38;5;241m=\u001b[39m isna(values)\n\u001b[0;32m--> 418\u001b[0m result \u001b[38;5;241m=\u001b[39m \u001b[43mfunc\u001b[49m\u001b[43m(\u001b[49m\u001b[43mvalues\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mskipna\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mskipna\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmask\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mmask\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    420\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m datetimelike:\n\u001b[1;32m    421\u001b[0m     result \u001b[38;5;241m=\u001b[39m _wrap_results(result, orig_values\u001b[38;5;241m.\u001b[39mdtype, fill_value\u001b[38;5;241m=\u001b[39miNaT)\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/pandas/core/nanops.py:706\u001b[0m, in \u001b[0;36mnanmean\u001b[0;34m(values, axis, skipna, mask)\u001b[0m\n\u001b[1;32m    703\u001b[0m     dtype_count \u001b[38;5;241m=\u001b[39m dtype\n\u001b[1;32m    705\u001b[0m count \u001b[38;5;241m=\u001b[39m _get_counts(values\u001b[38;5;241m.\u001b[39mshape, mask, axis, dtype\u001b[38;5;241m=\u001b[39mdtype_count)\n\u001b[0;32m--> 706\u001b[0m the_sum \u001b[38;5;241m=\u001b[39m _ensure_numeric(\u001b[43mvalues\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msum\u001b[49m\u001b[43m(\u001b[49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mdtype\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mdtype_sum\u001b[49m\u001b[43m)\u001b[49m)\n\u001b[1;32m    708\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m axis \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mgetattr\u001b[39m(the_sum, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mndim\u001b[39m\u001b[38;5;124m\"\u001b[39m, \u001b[38;5;28;01mFalse\u001b[39;00m):\n\u001b[1;32m    709\u001b[0m     count \u001b[38;5;241m=\u001b[39m cast(np\u001b[38;5;241m.\u001b[39mndarray, count)\n",
+      "File \u001b[0;32m/opt/conda/lib/python3.10/site-packages/numpy/core/_methods.py:48\u001b[0m, in \u001b[0;36m_sum\u001b[0;34m(a, axis, dtype, out, keepdims, initial, where)\u001b[0m\n\u001b[1;32m     46\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_sum\u001b[39m(a, axis\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mNone\u001b[39;00m, dtype\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mNone\u001b[39;00m, out\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mNone\u001b[39;00m, keepdims\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mFalse\u001b[39;00m,\n\u001b[1;32m     47\u001b[0m          initial\u001b[38;5;241m=\u001b[39m_NoValue, where\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mTrue\u001b[39;00m):\n\u001b[0;32m---> 48\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mumr_sum\u001b[49m\u001b[43m(\u001b[49m\u001b[43ma\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mdtype\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mout\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mkeepdims\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43minitial\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mwhere\u001b[49m\u001b[43m)\u001b[49m\n",
+      "\u001b[0;31mTypeError\u001b[0m: unsupported operand type(s) for +: 'float' and 'str'"
+     ]
+    }
+   ],
+   "source": [
+    "# Calculate the mean of 'column_2'\n",
+    "column_2_mean = df1[\"column_2\"].mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "e7d98a3d-6668-47a9-97e2-e4f1e4c07bba",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'column_2_mean' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "Cell \u001b[0;32mIn[44], line 2\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[38;5;66;03m# Print the mean of 'column_2'\u001b[39;00m\n\u001b[0;32m----> 2\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124mMean of \u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mcolumn_2\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m:\u001b[39m\u001b[38;5;124m\"\u001b[39m, \u001b[43mcolumn_2_mean\u001b[49m)\n",
+      "\u001b[0;31mNameError\u001b[0m: name 'column_2_mean' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "# Print the mean of 'column_2'\n",
+    "print(\"\\nMean of 'column_2':\", column_2_mean)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bf549a81-8a27-45c8-b617-366d39ebd0de",
+   "metadata": {},
+   "source": [
+    "In this case, the second row of 'column_2' is replaced with the string 'your_string_data'.\n",
+    "It might lead to issues if we plan to perform numerical operations on the column."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c2c3fc4d-335e-4983-8dee-270b96874c64",
+   "metadata": {},
+   "source": [
+    "Q6. What do you understand about the windows function in pandas and list the types of windows\n",
+    "functions?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "774f3162-0c4e-4479-aa71-67af7bfd5282",
+   "metadata": {},
+   "source": [
+    "Q6>Answer> In Pandas, a window function (also known as a rolling or moving function) is a way to perform operations\n",
+    "on a set of data points within a specified window of observations.These functions are especially useful for time-series data\n",
+    "or any ordered data where you want to calculate aggregates or apply transformations over a rolling window."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "844ed200-cc80-4b6d-a112-365bdc9cb80f",
+   "metadata": {},
+   "source": [
+    "Here are some common types of window functions in Pandas:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "64337212-09c8-48ca-a937-cdc431d3e7b7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Rolling Mean:Calculates the mean of values in a rolling window.\n",
+    "df['column'].rolling(window=3).mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "391a9906-1913-4fa4-8dd0-eda4130e16be",
+   "metadata": {},
+   "source": [
+    "Q7. Write a code to print only the current month and year at the time of answering this question.\n",
+    "[Hint: Use pandas.datetime function]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7377b506-3b4f-4774-b200-fca29eab81a0",
+   "metadata": {},
+   "source": [
+    "Q7> Answer> We can use the pandas.to_datetime function along with the pd.Timestamp.now() function to get the current\n",
+    "date and time. Here's a code snippet to print the current month and year:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "9461011c-1445-467e-96c6-188db2f34bc7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "aff4ce2b-a095-4048-abc6-f882d3177633",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Get the current date and time\n",
+    "current_datetime = pd.Timestamp.now()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "35339491-f41f-4900-8664-dc5227a75056",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Extract and print the current month and year\n",
+    "current_month = current_datetime.month\n",
+    "current_year = current_datetime.year"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "43e81852-0e55-46d2-9cba-538c309138fc",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Current Month: 1\n",
+      "Current Year: 2024\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Current Month:\", current_month)\n",
+    "print(\"Current Year:\", current_year)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a99ccd5f-f3dc-429c-8a4c-12387a904d92",
+   "metadata": {},
+   "source": [
+    "Q8. Write a Python program that takes in two dates as input (in the format YYYY-MM-DD) and\n",
+    "calculates the difference between them in days, hours, and minutes using Pandas time delta. The\n",
+    "program should prompt the user to enter the dates and display the result."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0a41447b-daaf-47e0-bef7-36990fbdb456",
+   "metadata": {},
+   "source": [
+    "Q8>Answer> We can use the Pandas to_datetime function to convert the input strings to datetime objects\n",
+    "and then calculate the time difference using Pandas Timedelta. Here is a simple Python program that does this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "5a41dd42-fa03-40a0-87be-d021a477b485",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "def calculate_time_difference(date1, date2):\n",
+    "    # Convert input strings to datetime objects\n",
+    "    date1 = pd.to_datetime(date1, format='%Y-%m-%d')\n",
+    "    date2 = pd.to_datetime(date2, format='%Y-%m-%d')\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "00268fdc-ca4e-42e1-868f-4dc8cd3ac127",
+   "metadata": {},
+   "source": [
+    "# Calculate the time difference\n",
+    "time_difference = date2 - date1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cd322e0d-9bbe-4e4f-ab00-50606c2143ef",
+   "metadata": {},
+   "source": [
+    "# Extract days, hours, and minutes from the time difference\n",
+    "days = time_difference.days\n",
+    "hours, remainder = divmod(time_difference.seconds, 3600)\n",
+    "minutes, _ = divmod(remainder, 60)\n",
+    "return days, hours, minutes"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "40d328d1-15e3-48a0-8a19-0c37f2197035",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter the first date (YYYY-MM-DD):  2024-01-10\n"
+     ]
+    }
+   ],
+   "source": [
+    "date_input1 = input(\"Enter the first date (YYYY-MM-DD): \")\n",
+    "date_input2 = input(\"Enter the second date (YYYY-MM-DD): \")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8cca428b-9f4c-4811-96ff-d84dd1577901",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Calculate the time difference\n",
+    "days_diff, hours_diff, minutes_diff = calculate_time_difference(date_input1, date_input2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fa0faf97-6d4c-490e-bc82-a74df2dc772c",
+   "metadata": {},
+   "source": [
+    "This program defines a function calculate_time_difference that takes two date strings as input,\n",
+    "converts them to datetime objects, calculates the time difference, and then extracts days, hours, \n",
+    "and minutes. The user is prompted to enter two dates, and the program displays the calculated time difference."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b9d6dd8a-5bf7-467e-bb16-15e057e820a6",
+   "metadata": {},
+   "source": [
+    "Q9. Write a Python program that reads a CSV file containing categorical data and converts a specified\n",
+    "column to a categorical data type. The program should prompt the user to enter the file path, column\n",
+    "name, and category order, and then display the sorted data."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "497d082b-4a0a-438e-b82d-bfde6c20cbe7",
+   "metadata": {},
+   "source": [
+    "Q9>Answer> You can use the pandas library to read the CSV file and convert the specified column to a categorical datatype.\n",
+    "Here is a Python program that accomplishes this task:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "7a2590f2-49b6-4b6e-8459-ac0041a9713a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "6cb69431-d306-4856-ae4b-32c38109c5f4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def convert_to_categorical(file_path, column_name, category_order):\n",
+    "    # Read the CSV file\n",
+    "    try:\n",
+    "        df = pd.read_csv(file_path)\n",
+    "    except FileNotFoundError:\n",
+    "        print(\"File not found. Please provide a valid file path.\")\n",
+    "        return\n",
+    "    except pd.errors.EmptyDataError:\n",
+    "        print(\"The file is empty.\")\n",
+    "        return\n",
+    "    except pd.errors.ParserError:\n",
+    "        print(\"Error parsing the CSV file.\")\n",
+    "        return"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "409e83da-3735-47b6-9946-e28576dbc8e0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Convert the specified column to a categorical data type\n",
+    "    try:\n",
+    "        df[column_name] = pd.Categorical(df[column_name], categories=category_order, ordered=True)\n",
+    "    except KeyError:\n",
+    "        print(\"Column not found. Please provide a valid column name.\")\n",
+    "        return"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "67704d6e-e592-4a71-a8e6-4d15a3d10320",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Display the sorted data\n",
+    "    Sorted_df = df.sort_values(by=[column_name])\n",
+    "    print(\"\\nSorted Data:\")\n",
+    "    print(sorted_df)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5d3c6cf1-d054-4bbf-ba03-2bba25e30201",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Prompt the user to enter file path, column name, and category order\n",
+    "file_path = input(\"Enter the CSV file path: \")\n",
+    "column_name = input(\"Enter the column name to convert: \")\n",
+    "category_order = input(\"Enter the category order (comma-separated): \").split(',')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4aa55bc6-d490-4ddd-846b-8b253437079a",
+   "metadata": {},
+   "source": [
+    "This program defines a function convert_to_categorical that reads a CSV file, converts a specified column to a categorical \n",
+    "data type with a given category order, and then displays the sorted data. The user is prompted to enter the file path, column\n",
+    "name, and category order. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "53db3b29-b185-4f1e-b523-169f7884e830",
+   "metadata": {},
+   "source": [
+    "Q10. Write a Python program that reads a CSV file containing sales data for different products and\n",
+    "visualizes the data using a stacked bar chart to show the sales of each product category over time. The\n",
+    "program should prompt the user to enter the file path and display the chart."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c0891c77-4036-4352-a567-6e754c363b3b",
+   "metadata": {},
+   "source": [
+    "Q10>Answer>  you can use the pandas library to read the CSV file and then use matplotlib or seaborn for data visualization.\n",
+    "Here is a simple Python program using pandas and matplotlib."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "d5a4890e-5709-48ee-88a8-730cd052bfae",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "e092b24c-9a7b-4382-8863-d4114bead537",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def visualize_sales_data(file_path):\n",
+    "    # Read the CSV file\n",
+    "    try:\n",
+    "        df = pd.read_csv(file_path)\n",
+    "    except FileNotFoundError:\n",
+    "        print(\"File not found. Please provide a valid file path.\")\n",
+    "        return\n",
+    "    except pd.errors.EmptyDataError:\n",
+    "        print(\"The file is empty.\")\n",
+    "        return\n",
+    "    except pd.errors.ParserError:\n",
+    "        print(\"Error parsing the CSV file.\")\n",
+    "        return"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ab0da325-fd3e-456a-a6d1-f4468154ec6a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    " # Check if the required columns are present\n",
+    "    if 'Date' not in df.columns or 'ProductCategory' not in df.columns or 'Sales' not in df.columns:\n",
+    "        print(\"Required columns not found in the CSV file.\")\n",
+    "        return"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "57dc6031-1f70-4b23-b1ad-d005414d5b69",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Convert the 'Date' column to datetime format\n",
+    "    df['Date'] = pd.to_datetime(df['Date'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8ff7e4e8-dbb3-4223-b407-76c297c84e2a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "    # Pivot the data for stacked bar chart\n",
+    "pivot_df = df.pivot_table(index='Date', columns='ProductCategory', values='Sales', aggfunc='sum', fill_value=0)\n",
+    "\n",
+    "    # Create a stacked bar chart\n",
+    "    pivot_df.plot(kind='bar', stacked=True, figsize=(10, 6))\n",
+    "    plt.title('Sales of Each Product Category Over Time')\n",
+    "    plt.xlabel('Date')\n",
+    "    plt.ylabel('Sales')\n",
+    "    plt.show()\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c8058e7c-d215-43d1-ae00-02e016121a14",
+   "metadata": {},
+   "source": [
+    "This program reads a CSV file containing sales data, checks if the required columns are present, \n",
+    "converts the 'Date' column to datetime format, and then creates a stacked bar chart showing \n",
+    "the sales of each product category over time. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7bb9d978-9010-46a2-8564-0aa5063b3693",
+   "metadata": {},
+   "source": [
+    "Q11. You are given a CSV file containing student data that includes the student ID and their test score. Write\n",
+    "a Python program that reads the CSV file, calculates the mean, median, and mode of the test scores, and\n",
+    "displays the results in a table.\n",
+    "The program should do the followingM\n",
+    "I Prompt the user to enter the file path of the CSV file containing the student dataR\n",
+    "I Read the CSV file into a Pandas DataFrameR\n",
+    "I Calculate the mean, median, and mode of the test scores using Pandas toolsR\n",
+    "I Display the mean, median, and mode in a table.\n",
+    "Assume the CSV file contains the following columnsM\n",
+    "I Student ID: The ID of the studentR\n",
+    "I Test Score: The score of the student's test.\n",
+    "Example usage of the program:\n",
+    "Enter the file path of the CSV file containing the student data: student_data.csv\n",
+    "+-----------+--------+\n",
+    "| Statistic | Value |\n",
+    "+-----------+--------+\n",
+    "| Mean | 79.6 |\n",
+    "| Median | 82 |\n",
+    "| Mode | 85, 90 |\n",
+    "+-----------+--------+\n",
+    "Assume that the CSV file student_data.csv contains the following data:\n",
+    "Student ID,Test Score\n",
+    "1,85\n",
+    "2,90\n",
+    "3,80\n",
+    "4,75\n",
+    "5,85\n",
+    "6,82\n",
+    "7,78\n",
+    "8,85\n",
+    "9,90\n",
+    "10,85\n",
+    "The program should calculate the mean, median, and mode of the test scores and display the results\n",
+    "in a table."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "45331808-03c9-40d7-b129-85b16abac0a6",
+   "metadata": {},
+   "source": [
+    "Q11> Answer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8bd46101-16bc-44e0-9f1d-a05e95cc6482",
+   "metadata": {},
+   "source": [
+    "You can use the pandas library to read the CSV file and calculate the mean, median,\n",
+    "and mode of the test scores. Here is a Python program that accomplishes this."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ea6cd97b-f2bc-480a-af00-66ccd0f91c27",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "def calculate_statistics(file_path):\n",
+    "    # Read the CSV file\n",
+    "    try:\n",
+    "        df = pd.read_csv(file_path)\n",
+    "    except FileNotFoundError:\n",
+    "        print(\"File not found. Please provide a valid file path.\")\n",
+    "        return\n",
+    "    except pd.errors.EmptyDataError:\n",
+    "        print(\"The file is empty.\")\n",
+    "        return\n",
+    "    except pd.errors.ParserError:\n",
+    "        print(\"Error parsing the CSV file.\")\n",
+    "        return\n",
+    "\n",
+    "    # Check if the required columns are present\n",
+    "    if 'Test Score' not in df.columns:\n",
+    "        print(\"Test Score column not found in the CSV file.\")\n",
+    "        return\n",
+    "\n",
+    "    # Calculate mean, median, and mode\n",
+    "    mean_score = df['Test Score'].mean()\n",
+    "    median_score = df['Test Score'].median()\n",
+    "    mode_scores = df['Test Score'].mode()\n",
+    "\n",
+    "    # Display the results in a table\n",
+    "    result_table = pd.DataFrame({\n",
+    "        'Statistic': ['Mean', 'Median', 'Mode'],\n",
+    "        'Value': [mean_score, median_score, ', '.join(map(str, mode_scores))]\n",
+    "    })\n",
+    "\n",
+    "    print(result_table)\n",
+    "\n",
+    "# Prompt the user to enter the file path\n",
+    "file_path = input(\"Enter the file path of the CSV file containing the student data: \")\n",
+    "\n",
+    "# Call the function to calculate statistics and display the results\n",
+    "calculate_statistics(file_path)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "097b5439-4fec-44ab-bad8-abc861245a72",
+   "metadata": {},
+   "source": [
+    "This program prompts the user to enter the file path of the CSV file, reads the file into a Pandas DataFrame,\n",
+    "calculates the mean, median, and mode of the test scores, and displays the results in a table."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9f7e181c-a9ad-4992-9b34-171f561a4fc0",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
